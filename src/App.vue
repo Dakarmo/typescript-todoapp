@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>Hello Vuejs 🧨🧨🧨</h1>
+    <router-view></router-view>
+    <!-- <routerView></routerView> -->
   </div>
 </template>
 
