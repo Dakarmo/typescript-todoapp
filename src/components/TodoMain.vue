@@ -10,7 +10,13 @@
             </li>
         </ul> -->
     <ul class="todo-list">
-      <TodoItem v-for="todo in taches" :key="todo.id" :todo="todo" @update-todo="updateTodo" @delete-todo="emit('delete-todo', todo)" />
+      <TodoItem
+        v-for="todo in taches"
+        :key="todo.id"
+        :todo="todo"
+        @update-todo="updateTodo"
+        @delete-todo="emit('delete-todo', todo)"
+      />
     </ul>
   </main>
 </template>
@@ -28,11 +34,11 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'delete-todo', todo: Todo): void
   (e: 'update-todo', todo: Todo, completeVal: boolean): void
-}>();
- 
- function updateTodo(todo : Todo, completedValue: boolean) {
+}>()
+
+function updateTodo(todo: Todo, completedValue: boolean) {
   emit('update-todo', todo, completedValue)
-  }
+}
 </script>
 
 <style scoped></style>
