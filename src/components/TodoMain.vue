@@ -10,7 +10,7 @@
             </li>
         </ul> -->
     <ul class="todo-list">
-      <TodoItem v-for="todo in taches" :key="todo.id" :todo="todo" />
+      <TodoItem v-for="todo in taches" :key="todo.id" :todo="todo" @delete-todo="emit('delete-todo', todo)" />
     </ul>
   </main>
 </template>
@@ -24,6 +24,11 @@ import TodoItem from '@/components/TodoItem.vue'
 const props = defineProps<{
   taches: Todo[]
 }>()
+
+const emit = defineEmits<{
+  (e: 'delete-todo', todo: Todo): void
+}>();
+
 </script>
 
 <style scoped></style>

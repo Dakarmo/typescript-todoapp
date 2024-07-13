@@ -2,7 +2,7 @@
   <div>
     <TodoHeader @add-todo="addTodo" />
 
-    <TodoMain :taches="todos" />
+    <TodoMain :taches="todos" @delete-todo="deleteTodo" />
 
     <TodoFooter :todos="todos" />
   </div>
@@ -33,6 +33,10 @@ function addTodo(value: string) {
     title: value,
     complete: false
   })
+}
+
+function deleteTodo (todo: Todo ): void{
+  todos.value = todos.value.filter(el => el !== todo);
 }
 </script>
 
