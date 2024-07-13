@@ -6,6 +6,7 @@
 
     <TodoFooter :todos="todos" />
   </div>
+  <!-- <pre>{{ todos }}</pre> -->
 </template>
 
 <script setup lang="ts">
@@ -14,7 +15,8 @@ import TodoHeader from '@/components/TodoHeader.vue'
 import TodoMain from '@/components/TodoMain.vue'
 import TodoFooter from '@/components/TodoFooter.vue'
 import type { Todo } from '@/@types'
-import { ref } from 'vue';
+import { ref } from 'vue'
+import { nanoid } from 'nanoid'
 
 // interface Todo {
 //     id: number,
@@ -22,17 +24,15 @@ import { ref } from 'vue';
 //     complete: boolean,
 // }
 
-const todos = ref<Todo[]>([
- 
-])
+const todos = ref<Todo[]>([])
 
 function addTodo(value: string) {
-//   alert('Youpi !')
-todos.value.push({
-    id: 0,
+  //   alert('Youpi !')
+  todos.value.push({
+    id: nanoid(),
     title: value,
     complete: false
-})
+  })
 }
 </script>
 

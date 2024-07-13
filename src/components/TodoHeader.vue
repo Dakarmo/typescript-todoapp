@@ -10,8 +10,10 @@
       placeholder="Entrer une tâche"
       autofocus
       autocomplete="off"
-      @keyup.enter="emit('add-todo', ($event.target as HTMLInputElement).value);
-      ($event.target as HTMLInputElement).value = ''"
+      @keyup.enter="
+        emit('add-todo', ($event.target as HTMLInputElement).value)
+        ;($event.target as HTMLInputElement).value = ''
+      "
     />
   </header>
 </template>
