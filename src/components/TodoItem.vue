@@ -77,7 +77,9 @@ function editTodo() {
 }
 
 function cancelEdit() {
-  alert('cancel edit')
+  // alert('cancel edit')
+  editing.value = false;
+
 }
 </script>
 <style scoped>
