@@ -22,6 +22,7 @@ import TodoFooter from '@/components/TodoFooter.vue'
 import type { Todo } from '@/@types'
 import { ref } from 'vue'
 import { nanoid } from 'nanoid'
+import { useStorage } from '@vueuse/core'
 
 // interface Todo {
 //     id: number,
@@ -29,18 +30,19 @@ import { nanoid } from 'nanoid'
 //     complete: boolean,
 // }
 
-const todos = ref<Todo[]>([])
+// const todos = ref<Todo[]>([]);
+
+const todos = useStorage<Todo[]>('todoapp-todos', [])
 
 function addTodo(value: string) {
   //   alert('Youpi !')
-  if (value.trim().length === 0) return;
-  
-    todos.value.push({
-      id: nanoid(),
-      title: value,
-      complete: false
-    })
-  
+  if (value.trim().length === 0) return
+
+  todos.value.push({
+    id: nanoid(),
+    title: value,
+    complete: false
+  })
 }
 
 function deleteTodo(todo: Todo): void {

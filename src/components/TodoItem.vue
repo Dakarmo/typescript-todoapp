@@ -20,7 +20,7 @@
     </div>
   </li>
 
-  <pre>{{ todo }}</pre>
+  <!-- <pre>{{ todo }}</pre> -->
 </template>
 
 <script setup lang="ts">
@@ -78,8 +78,7 @@ function editTodo() {
 
 function cancelEdit() {
   // alert('cancel edit')
-  editing.value = false;
-
+  editing.value = false
 }
 </script>
 <style scoped>
