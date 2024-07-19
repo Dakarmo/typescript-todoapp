@@ -1,5 +1,5 @@
 <template>
-  <li :class="{ completed: todo.complete, editing:editing }">
+  <li :class="{ completed: todo.complete, editing: editing }">
     <!-- {{ todo.title }} -->
     <div class="view">
       <input type="checkbox" class="toggle" v-model="isTodoCompleted" />
@@ -8,6 +8,7 @@
     </div>
     <div class="input-container">
       <input
+        ref="editRef"
         id="edit-to-input"
         class="edit"
         type="text"
@@ -15,7 +16,7 @@
         @keyup.enter="finishEdit"
         @blur="cancelEdit"
       />
-      <label class="hidden" for="edit-to-input">Editer</label>
+      <label class="visually-hidden" for="edit-to-input">Editer</label>
     </div>
   </li>
 
@@ -24,7 +25,19 @@
 
 <script setup lang="ts">
 import type { Todo } from '@/@types'
-import { computed, ref } from 'vue'
+import { computed, ref, nextTick } from 'vue'
+
+const editRef = ref<HTMLInputElement>()
+const editing = ref<boolean>(false)
+const editText = ref<string>('')
+
+const editInput = computed({
+  get: () => props.todo.title,
+  set: (val) => {
+    editText.value = val
+  }
+})
+
 const props = defineProps<{
   todo: Todo
 }>()
@@ -45,17 +58,13 @@ const isTodoCompleted = computed({
   set: (newVal: boolean) => emit('update-todo', props.todo, newVal)
 })
 
-const editing = ref<boolean>(false)
-const editText = ref<string>('')
-const editInput = computed({
-  get: () => props.todo.title,
-  set: (val) => {
-    editText.value = val
-  }
-})
-
-function startEditing() {
+async function startEditing() {
   editing.value = true
+
+  //faire un focus sur le champs de saisie lors de l'édition
+  await nextTick(() => {
+    editRef.value?.focus()
+  })
 }
 function finishEdit() {
   editing.value = false
@@ -71,4 +80,16 @@ function cancelEdit() {
   alert('cancel edit')
 }
 </script>
-<style scoped></style>
+<style scoped>
+.visually-hidden {
+  bottom: 0;
+  clip: rect(0 0 0 0);
+  clip-path: 50%;
+  height: 1px;
+  width: 1px;
+  margin: 1px;
+  padding: 0;
+  overflow: hidden;
+  white-space: wrap;
+}
+</style>

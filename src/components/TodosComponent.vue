@@ -2,7 +2,12 @@
   <div>
     <TodoHeader @add-todo="addTodo" />
 
-    <TodoMain :taches="todos" @delete-todo="deleteTodo" @update-todo="updateTodo" @edit-todo="editTodo" />
+    <TodoMain
+      :taches="todos"
+      @delete-todo="deleteTodo"
+      @update-todo="updateTodo"
+      @edit-todo="editTodo"
+    />
 
     <TodoFooter :todos="todos" />
   </div>
@@ -28,11 +33,13 @@ const todos = ref<Todo[]>([])
 
 function addTodo(value: string) {
   //   alert('Youpi !')
-  todos.value.push({
-    id: nanoid(),
-    title: value,
-    complete: false
-  })
+  if (value !== '') {
+    todos.value.push({
+      id: nanoid(),
+      title: value,
+      complete: false
+    })
+  }
 }
 
 function deleteTodo(todo: Todo): void {
@@ -45,8 +52,6 @@ function updateTodo(todo: Todo, completedValue: boolean) {
 function editTodo(todo: Todo, value: string) {
   todo.title = value
 }
-
-
 </script>
 
 <style scoped></style>
