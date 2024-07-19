@@ -7,13 +7,17 @@
     </span>
     <ul class="filters">
       <li>
-        <routerLink to="/">Tous</routerLink>
+        <routerLink :class="{ selected: route.path === '/' }" to="/">Tous</routerLink>
       </li>
       <li>
-        <routerLink to="/waiting">En cours</routerLink>
+        <routerLink :class="{ selected: route.path === '/waiting' }" to="/waiting"
+          >En cours</routerLink
+        >
       </li>
       <li>
-        <routerLink to="/completed">Terminés</routerLink>
+        <routerLink :class="{ selected: route.path === '/completed' }" to="/completed"
+          >Terminés</routerLink
+        >
       </li>
     </ul>
     <button class="clear-completed">Eff. tâche terminées</button>
@@ -23,6 +27,9 @@
 <script setup lang="ts">
 import type { Todo } from '@/@types'
 import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
+
 const props = defineProps<{
   todos: Todo[]
 }>()
