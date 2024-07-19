@@ -33,13 +33,14 @@ const todos = ref<Todo[]>([])
 
 function addTodo(value: string) {
   //   alert('Youpi !')
-  if (value !== '') {
+  if (value.trim().length === 0) return;
+  
     todos.value.push({
       id: nanoid(),
       title: value,
       complete: false
     })
-  }
+  
 }
 
 function deleteTodo(todo: Todo): void {
