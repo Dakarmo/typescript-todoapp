@@ -7,13 +7,13 @@
     </span>
     <ul class="filters">
       <li>
-        <routerLink to="#">Tous</routerLink>
+        <routerLink to="/">Tous</routerLink>
       </li>
       <li>
-        <routerLink to="#">En cours</routerLink>
+        <routerLink to="/waiting">En cours</routerLink>
       </li>
       <li>
-        <routerLink to="#">Terminés</routerLink>
+        <routerLink to="/completed">Terminés</routerLink>
       </li>
     </ul>
     <button class="clear-completed">Eff. tâche terminées</button>
