@@ -16,7 +16,7 @@
       @edit-todo="editTodo"
     />
 
-    <TodoFooter :todos="todos" />
+    <TodoFooter :todos="todos" @delete-completed="deleteCompleted" />
 
     <!-- <pre>waiting {{ waitingTodos }}</pre>
     <pre>completed {{ completedTodos }}</pre> -->
@@ -87,8 +87,13 @@ function deleteTodo(todo: Todo): void {
 function updateTodo(todo: Todo, completedValue: boolean) {
   todo.complete = completedValue
 }
+
 function editTodo(todo: Todo, value: string) {
   todo.title = value
+}
+
+function deleteCompleted(): void {
+  todos.value = todos.value.filter((el) => !el.complete)
 }
 </script>
 
