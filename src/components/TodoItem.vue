@@ -49,9 +49,9 @@ const emit = defineEmits<{
 }>()
 
 // const isTodoCompleted = ref<boolean>(props.todo.complete);
-//watch(() => isTodoCompleted.value, (newVal) =>
+// watch(() => isTodoCompleted.value, (newVal) =>
 // emit('update-todo', props.todo, newVal)
-//)
+// )
 
 const isTodoCompleted = computed({
   get: () => props.todo.complete,

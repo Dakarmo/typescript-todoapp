@@ -14,6 +14,7 @@
       @delete-todo="deleteTodo"
       @update-todo="updateTodo"
       @edit-todo="editTodo"
+      @toggle-all-input = "toggleAllInput"
     />
 
     <TodoFooter :todos="todos" @delete-completed="deleteCompleted" />
@@ -79,7 +80,12 @@ function addTodo(value: string) {
     complete: false
   })
 }
-
+function toggleAllInput(value: boolean){
+  // alert("toggleAllInput: value = " + value);
+  todos.value.forEach((todo) => {
+    todo.complete = value;
+  })
+}
 function deleteTodo(todo: Todo): void {
   todos.value = todos.value.filter((el) => el !== todo)
 }
